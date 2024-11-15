@@ -370,7 +370,7 @@ end
 
 --Consumables--
 
-SMODS.ConsumableType({
+local resourceType = SMODS.ConsumableType {
     key = "mc_Resource",
     primary_colour = HEX("6A5700"),
     secondary_colour = HEX("02BF0E"),
@@ -383,14 +383,19 @@ SMODS.ConsumableType({
             name = 'Undiscovered Resource',
             text = { 'no' },
         },
-        },
+    },
     shop_rate = 1000,
     default = 'c_mc_dirt',
     can_stack = true,
     can_divide = true,
-})
+}
+
 SMODS.MC_Resource = SMODS.Consumable:extend {
-    set = "mc_Resource"
+    set = "mc_Resource",
+    can_use = function(self, card) 
+        return true
+    end,
+    cost = 1
 }
 SMODS.UndiscoveredSprite {
     key = 'Resource',
@@ -398,7 +403,7 @@ SMODS.UndiscoveredSprite {
     pos = {x = 0, y = 2},
 }
     
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_dirt",
     set = "mc_Resource",
     pos = {x=0,y=0},
@@ -424,7 +429,7 @@ SMODS.Consumable({
 	
 })
 
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_coal",
     set = "mc_Resource",
     pos = {x=1,y=0},
@@ -449,7 +454,7 @@ SMODS.Consumable({
     end,
 })
 
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_copper",
     set = "mc_Resource",
     pos = {x=3,y=0},
@@ -474,7 +479,7 @@ SMODS.Consumable({
     end,
 })
 
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_iron",
     set = "mc_Resource",
     pos = {x=2,y=0},
@@ -498,7 +503,7 @@ SMODS.Consumable({
         return true
     end,
 })
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_gold",
     set = "mc_Resource",
     pos = {x=0,y=1},
@@ -522,7 +527,7 @@ SMODS.Consumable({
         return true
     end,
 })
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_diamond",
     set = "mc_Resource",
     pos = {x=1,y=1},
@@ -546,7 +551,7 @@ SMODS.Consumable({
         return true
     end,
 })
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_emerald",
     set = "mc_Resource",
     pos = {x=2,y=1},
@@ -570,7 +575,7 @@ SMODS.Consumable({
         return true
     end,
 })
-SMODS.Consumable({
+SMODS.MC_Resource({
     key = "mc_netherite",
     set = "mc_Resource",
     pos = {x=3,y=1},
